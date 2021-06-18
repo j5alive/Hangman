@@ -1,4 +1,4 @@
-import { Application } from "./controllers/Application";
+import {Application} from "./controllers/Application";
 import {UserInterface} from "./views/UserInterface";
 import {Game} from "./models/Game";
 
