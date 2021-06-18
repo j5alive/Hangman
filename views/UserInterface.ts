@@ -21,9 +21,10 @@ export class UserInterface {
     return prompt("Enter your next letter: ");
   }
 
-  displayGuessOutcome() {
+  displayGuessOutcome(hangman: string) {
+    this.output.log(`Current guess: ${this.game.redactedWord(" ")}`);
+    this.output.log(hangman);
     this.output.log(`You have ${this.game.turnsRemaining()} turns left`);
-    this.output.log(this.game.redactedWord(" "));
   }
 
   displayGameOutcome() {

@@ -1,5 +1,6 @@
 import {UserInterface} from "../views/UserInterface";
 import {Game} from "../models/Game";
+import {HangmanGenerator} from "../services/HangmanGenerator";
 
 export class Application {
   private ui: UserInterface
@@ -25,7 +26,9 @@ export class Application {
     const accepted = this.game.submitLetter(letter);
 
     if (accepted) {
-      this.ui.displayGuessOutcome();
+      const generatorService = new HangmanGenerator(this.game);
+      const hangman = generatorService.run();
+      this.ui.displayGuessOutcome(hangman);
     } else {
       this.ui.displayValidationError();
     }
