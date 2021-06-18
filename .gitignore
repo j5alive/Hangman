@@ -14,7 +14,8 @@ results
 tmp
 
 # Build
-public/css/main.css
+*.js
+*.map
 
 # Coverage reports
 coverage
