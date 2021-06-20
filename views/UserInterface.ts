@@ -22,14 +22,15 @@ export class UserInterface {
   }
 
   displayGuessOutcome(hangman: string) {
-    this.output.log(`Current guess: ${this.game.redactedWord(" ")}`);
-    this.output.log(hangman);
-    this.output.log(`You have ${this.game.turnsRemaining()} turns left`);
+    if (hangman.length > 0) {
+      this.output.log(hangman);
+    }
+    this.output.log(`You have ${this.game.turnsRemaining()} turns left to guess: ${this.game.redactedWord(" ")}`);
   }
 
   displayGameOutcome() {
     if (this.game.isWon()) {
-      this.output.log("Well done, you saved the man!");
+      this.output.log("Well done, you guessed the word and saved the stick figure!");
     } else {
       this.output.log(`You've run out of turns, the correct word was ${this.game.correctWord}`);
     }

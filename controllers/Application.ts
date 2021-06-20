@@ -26,8 +26,11 @@ export class Application {
     const accepted = this.game.submitLetter(letter);
 
     if (accepted) {
-      const generatorService = new HangmanGenerator(this.game);
-      const hangman = generatorService.run();
+      let hangman = "";
+      if (!this.game.lastLetterCorrect()) {
+        const generatorService = new HangmanGenerator(this.game);
+        hangman = generatorService.run();
+      }
       this.ui.displayGuessOutcome(hangman);
     } else {
       this.ui.displayValidationError();

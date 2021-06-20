@@ -28,12 +28,12 @@ export class Game {
 
   isWon() {
     return this.redactedWord("") === this.correctWord;
-  };
+  }
 
   isLost() {
     // number of incorrect guesses = number of lives
     return this.incorrectGuessCount() === Game.MaximumTurns;
-  };
+  }
 
   inPlay(): boolean {
     return !this.isWon() && !this.isLost();
@@ -51,5 +51,12 @@ export class Game {
     
     this.guessedLetters.push(lowerLetter);
     return true;
+  }
+  
+  lastLetterCorrect(): boolean {
+    if (this.guessedLetters.length === 0) return false;
+    
+    const lastGuessedLetter = this.guessedLetters[this.guessedLetters.length-1];
+    return this.correctWord.indexOf(lastGuessedLetter) > -1;
   }
 }
