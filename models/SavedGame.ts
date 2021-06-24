@@ -1,10 +1,10 @@
 
 export class SavedGame {
   
-  correctWord: string;
-  guessedLetters: string[]
+  correctWord: string | null;
+  guessedLetters?: string[] | null
 
-  constructor(correctWord: string = null, guessedLetters: string[] = null) {
+  constructor(correctWord: string | null = null, guessedLetters: string[] | null = null) {
     this.correctWord = correctWord;
     this.guessedLetters = guessedLetters;
   }
@@ -17,8 +17,24 @@ export class SavedGame {
     if (saveGameContent.length === 0) return false;
     
     const model = JSON.parse(saveGameContent)
-    this.guessedLetters = model.guessedLetters;
-    this.correctWord = model.correctWord;
-    return true;
+    if (model.guessedLetters && model.correctWord) {
+      this.guessedLetters = model.guessedLetters;
+      this.correctWord = model.correctWord;
+      return true;
+    }
+    
+    return false;
+  }
+
+  isValid() : boolean {
+    return this.correctWord !== null && this.guessedLetters !== null;
+  }
+  
+  getCorrectWord() : string {
+    return this.correctWord ?? "";
+  }
+
+  getGuessedLetters() {
+    return this.guessedLetters ?? [];
   }
 }

@@ -14,13 +14,14 @@ export class Application {
   run() {
     this.ui.showWelcome();
 
-    if (this.game.inPlay()) {
+    while (this.game.inPlay()) {
       this.playTurn();
+      //process.exit();
     }
-    else {
-      this.ui.displayGameOutcome();
-      this.game.reset();
-    }
+    
+    this.ui.displayGameOutcome();
+    this.game.reset();
+    
   }
   
   playTurn() {

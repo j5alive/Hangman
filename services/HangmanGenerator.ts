@@ -8,7 +8,7 @@ export class HangmanGenerator {
   // "|   |\n"
   // "|   O\n"
   // "|   |\n"
-  // "|   /\\\n"
+  // "|  / \\\n"
   // "|     \n"
   // "------"
   
@@ -28,10 +28,10 @@ export class HangmanGenerator {
     [2,4,"O"]
   ]
   sixthGuessParts : any[] = [
-    [3,4,"|"]
+    [3,3,"/"], [3,4,"|"], [3,5,"\\"]
   ]
   seventhGuessParts : any[] = [
-    [4,4,"/\\"]
+    [4,3,"/"], [4,5,"\\"]
   ]
   
 
@@ -86,9 +86,9 @@ export class HangmanGenerator {
   }
   
   generateInitialMatrix() {
-    const matrix = [];
+    const matrix = [] as any;
     for (let i = 0; i < 7; i++) {
-      matrix[i] = [" ", " ", " ", " ", " ", "\n"]
+      matrix[i] = [" ", " ", " ", " ", " ", " ", "\n"]
     }
     return matrix;
   }

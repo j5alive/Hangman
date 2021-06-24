@@ -70,9 +70,9 @@ export class Game {
   
   load() {
     const savedGame = this.filePersistence.load();
-    if (savedGame != null){
-      this.correctWord = savedGame.correctWord;
-      this.guessedLetters = savedGame.guessedLetters;
+    if (savedGame != null && savedGame.isValid()){
+      this.correctWord = savedGame.getCorrectWord();
+      this.guessedLetters = savedGame.getGuessedLetters();
     }
   }
 

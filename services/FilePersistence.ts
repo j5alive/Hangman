@@ -16,7 +16,7 @@ export class FilePersistence {
     return true;
   }
   
-  load() : SavedGame {
+  load() : SavedGame | null {
     if (!fs.existsSync(this.fileName)) return null;
     
     const fileContents = fs.readFileSync(this.fileName, 'utf-8')
