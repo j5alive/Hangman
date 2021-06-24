@@ -1,12 +1,16 @@
+import {FilePersistence} from "../services/FilePersistence";
+
 const randomWords = require('random-words');
 
 export class Game {
   static MaximumTurns : number = 7;
 
-  readonly correctWord: string;
-  private guessedLetters: string[]
+  private readonly filePersistence: FilePersistence;
+  correctWord: string;
+  guessedLetters: string[]
 
   constructor() {
+    this.filePersistence = new FilePersistence("savegame.dat")
     this.correctWord = randomWords();
     this.guessedLetters = [];
   }
@@ -58,5 +62,21 @@ export class Game {
     
     const lastGuessedLetter = this.guessedLetters[this.guessedLetters.length-1];
     return this.correctWord.indexOf(lastGuessedLetter) > -1;
+  }
+  
+  save() {
+    this.filePersistence.save(this);
+  }
+  
+  load() {
+    const savedGame = this.filePersistence.load();
+    if (savedGame != null){
+      this.correctWord = savedGame.correctWord;
+      this.guessedLetters = savedGame.guessedLetters;
+    }
+  }
+
+  reset() {
+    this.filePersistence.reset();
   }
 }

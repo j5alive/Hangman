@@ -13,7 +13,7 @@ export class UserInterface {
 
   showWelcome(){
     this.output.log("Welcome to Hangman!");
-    this.output.log(`You have ${Game.MaximumTurns} turns to guess the correct word`);
+    this.output.log(`You have ${this.game.turnsRemaining()} turns to guess the correct word`);
     this.output.log(`The word you need to guess is ${this.game.redactedWord(" ")}`);
   }
   
